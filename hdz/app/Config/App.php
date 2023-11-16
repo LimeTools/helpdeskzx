@@ -97,7 +97,7 @@ class App extends Helpdesk
      *
      * @var string[]
      */
-	public $supportedLocales = ['en'];
+	public $supportedLocales = ['lt', 'en'];
 
     /**
      * --------------------------------------------------------------------------
@@ -109,7 +109,7 @@ class App extends Helpdesk
      *
      * @var string
      */
-	public $appTimezone = 'America/Chicago';
+	public $appTimezone = 'Europe/Vilnius';
 
     /**
      * --------------------------------------------------------------------------
