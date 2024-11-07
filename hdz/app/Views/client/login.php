@@ -44,7 +44,7 @@ $this->section('content');
                         <button class="btn btn-primary btn-block"><?php echo lang('Client.login.button');?></button>
                     </div>
                     <div class="col-lg-6 text-lg-right">
-                        <a href="<?php echo site_url(route_to('forgot_password'));?>"><?php echo lang('Client.login.forgotPassword');?></a>
+                        <a href="https://sportas.klaipeda.lt/admin/password-reset/request"><?php echo lang('Client.login.forgotPassword');?></a>
                     </div>
                 </div>
             </div>

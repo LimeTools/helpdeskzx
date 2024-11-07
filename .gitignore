@@ -1,0 +1,5 @@
+hdz/writable/attachments/*
+hdz/writable/cache/*
+hdz/writable/logs/*
+hdz/writable/session/*
+hdz/app/Config/Helpdesk.php

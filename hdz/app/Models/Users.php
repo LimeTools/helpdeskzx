@@ -27,4 +27,6 @@ class Users extends Model
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
+
+    protected $DBGroup = 'sportance';
 }

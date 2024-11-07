@@ -52,7 +52,7 @@ class Client
         }
 
         $request = Services::request();
-        if(!password_verify(md5($user_data->password.$user_data->token.$request->getUserAgent()), $client_hash)){
+        if(!password_verify(md5($user_data->password.$request->getUserAgent()), $client_hash)){
             return $this->logout();
         }
         $this->user_data = $user_data;
@@ -72,7 +72,7 @@ class Client
     {
         $this->usersModel->protect(false);
         $this->usersModel->update($client_id, [
-            'last_login' => time()
+            'last_login_at' => time()
         ]);
         $this->usersModel->protect(true);
         $this->createSession($client_id, $password);
@@ -82,13 +82,12 @@ class Client
     {
         $request = Services::request();
         $session = Services::session();
-        $token = random_string('md5',60);
-        $hash = password_hash(md5($password.$token.$request->getUserAgent()), PASSWORD_BCRYPT);
-        $this->usersModel->protect(false);
-        $this->usersModel->update($client_id, [
-            'token' => $token,
-        ]);
-        $this->usersModel->protect(true);
+        $hash = password_hash(md5($password.$request->getUserAgent()), PASSWORD_BCRYPT);
+//        $this->usersModel->protect(false);
+//        $this->usersModel->update($client_id, [
+//            'token' => $token,
+//        ]);
+//        $this->usersModel->protect(true);
         $session->set([
             'clientID' => $client_id,
             'clientHash' => $hash

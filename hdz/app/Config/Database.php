@@ -77,6 +77,10 @@ class Database extends Config
         'port'     => 3306,
     ];
 
+    public $sportance = [
+
+    ];
+
 	//--------------------------------------------------------------------
 
 	public function __construct()
@@ -98,6 +102,16 @@ class Database extends Config
         $this->default['database'] = Helpdesk::DB_NAME;
         $this->default['DBPrefix'] = Helpdesk::DB_PREFIX;
         $this->default['port'] = Helpdesk::DB_PORT;
+
+        $this->sportance = $this->default;
+
+        $this->sportance['hostname'] = Helpdesk::DB_SPORTANCE_HOST;
+        $this->sportance['username'] = Helpdesk::DB_SPORTANCE_USER;
+        $this->sportance['password'] = Helpdesk::DB_SPORTANCE_PASSWORD;
+        $this->sportance['database'] = Helpdesk::DB_SPORTANCE_NAME;
+        $this->sportance['DBPrefix'] = Helpdesk::DB_SPORTANCE_PREFIX;
+        $this->sportance['port'] = Helpdesk::DB_SPORTANCE_PORT;
+
 	}
 
 	//--------------------------------------------------------------------
