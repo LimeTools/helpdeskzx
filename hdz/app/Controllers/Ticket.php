@@ -131,8 +131,7 @@ class Ticket extends BaseController
                     $attachments->addTicketFiles($ticket_id, $message_id, $files);
                 }
 
-
-                $ticket = $tickets->getTicket(['id' => $ticket_id]);
+                $ticket = $tickets->getTicket('id', $ticket_id);
                 $tickets->newTicketNotification($ticket);
                 $tickets->staffNotification($ticket);
                 $ticket_preview = sha1($ticket->id);

@@ -49,7 +49,8 @@ $page_controller = isset($page_controller) ? $page_controller : '';
                             <?php echo lang('Client.account.menu');?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="<?php echo site_url(route_to('profile'));?>"><?php echo lang('Client.account.editProfile');?></a>
+                            <a class="dropdown-item" href="https://sportas.klaipeda.lt/admin/profile"><?php echo lang('Client.account.editProfile');?></a>
+                            <!--<a class="dropdown-item" href="<?php echo site_url(route_to('profile'));?>"><?php echo lang('Client.account.editProfile');?></a>-->
                             <a class="dropdown-item" href="<?php echo site_url(route_to('logout'));?>"><?php echo lang('Client.account.logout');?></a>
                         </div>
                     </li>

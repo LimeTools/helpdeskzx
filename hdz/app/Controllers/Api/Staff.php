@@ -36,7 +36,7 @@ class Staff extends ResourceController
             $this->model->where('username', $this->request->getGet('username'));
         }
         return $api->output([
-            'users' => $this->model->select('id, username, fullname, email, registration, last_login')->findAll()
+            'users' => $this->model->select('*')->findAll()
         ]);
     }
 
@@ -50,7 +50,7 @@ class Staff extends ResourceController
         if(!is_numeric($id) || $id != round($id)){
             return $api->output(lang('Api.error.staffIdNotValid'), true);
         }
-        if(!$result = $this->model->select('id, username, fullname, email, registration, last_login')->find($id)){
+        if(!$result = $this->model->select('*')->find($id)){
             return $api->output(lang('Api.error.staffIdNotFound'), true);
         }else{
             return $api->output(['staff_data' => $result]);

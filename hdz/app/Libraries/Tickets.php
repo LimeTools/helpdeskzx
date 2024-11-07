@@ -19,6 +19,7 @@ use Config\Services;
 
 class Tickets
 {
+    protected $usersModel;
     protected $ticketsModel;
     protected $messagesModel;
     protected $settings;
@@ -26,6 +27,7 @@ class Tickets
     {
         $this->settings = Services::settings();
         $this->ticketsModel = new \App\Models\Tickets();
+        $this->usersModel = new \App\Models\Users();
         $this->messagesModel = new TicketsMessage();
     }
     public function createTicket($client_id, $subject, $department_id=1,$priority_id=1)
@@ -106,18 +108,28 @@ class Tickets
         if(!is_array($field)){
             $field = array($field => $value);
         }
+
         foreach ($field as $k => $v){
             $this->ticketsModel->where('tickets.'.$k, $v);
         }
-        $q = $this->ticketsModel->select('tickets.*, d.name as department_name, p.name as priority_name, u.fullname, u.email, u.avatar')
+        $q = $this->ticketsModel->select('tickets.*, d.name as department_name, p.name as priority_name')
             ->join('departments as d','d.id=tickets.department_id')
             ->join('priority as p','p.id=tickets.priority_id')
-            ->join('users as u','u.id=tickets.user_id')
             ->get(1);
-        if($q->resultID->num_rows == 0){
+
+        if ($q->resultID->num_rows == 0){
             return null;
         }
-        return $q->getRow();
+        $ticket = $q->getRow();
+
+        if ($ticket->user_id) {
+            $user = $this->usersModel->select("email, name")->where('id', $ticket->user_id)->get(1)->getRow();
+        }
+
+        $ticket->email = $user->email ?? '';
+        $ticket->fullname = $user->name ?? '';
+
+        return $ticket;
     }
 
     public function countTickets($data)
@@ -322,8 +334,8 @@ class Tickets
         //Send Mail to client
         $emails = new Emails();
         $emails->sendFromTemplate('new_ticket',[
-            '%client_name%' => $ticket->fullname,
-            '%client_email%' => $ticket->email,
+            '%client_name%' => $ticket->fullname ?? false,
+            '%client_email%' => $ticket->email ?? false,
             '%ticket_id%' => $ticket->id,
             '%ticket_subject%' => $ticket->subject,
             '%ticket_department%' => $ticket->department_name,
@@ -716,7 +728,7 @@ class Tickets
 
         $db = Database::connect();
         $result = $this->ticketsModel->select('tickets.*, u.fullname, d.name as department_name,
-        p.name as priority_name, p.color as priority_color, 
+        p.name as priority_name, p.color as priority_color,
         IF(last_replier=0, "", (SELECT username FROM '.$db->prefixTable('staff').' WHERE id=last_replier)) as staff_username')
             ->join('users as u', 'u.id=tickets.user_id')
             ->join('departments as d', 'd.id=tickets.department_id')

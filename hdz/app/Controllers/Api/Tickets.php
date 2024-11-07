@@ -128,8 +128,8 @@ class Tickets extends ResourceController
             $this->model->where('tickets.department_id', $this->request->getGet('department_id'));
         }
         $settings = Services::settings();
-        $result = $this->model->select('tickets.id, tickets.user_id, tickets.department_id, tickets.subject, 
-        tickets.date, tickets.last_update, tickets.status, tickets.replies, users.fullname as user_fullname, 
+        $result = $this->model->select('tickets.id, tickets.user_id, tickets.department_id, tickets.subject,
+        tickets.date, tickets.last_update, tickets.status, tickets.replies, users.name as user_fullname,
         departments.name as department_name')
             ->join('users', 'users.id=tickets.user_id')
             ->join('departments', 'departments.id=tickets.department_id')
@@ -149,8 +149,8 @@ class Tickets extends ResourceController
             return $api->showError();
         }
 
-        $result = $this->model->select('tickets.id, tickets.user_id, tickets.department_id, tickets.subject, 
-        tickets.date, tickets.last_update, tickets.status, tickets.replies, users.fullname as user_fullname, 
+        $result = $this->model->select('tickets.id, tickets.user_id, tickets.department_id, tickets.subject,
+        tickets.date, tickets.last_update, tickets.status, tickets.replies, users.name as user_fullname,
         departments.name as department_name')
             ->join('users', 'users.id=tickets.user_id')
             ->join('departments', 'departments.id=tickets.department_id')

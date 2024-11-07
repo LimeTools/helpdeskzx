@@ -25,9 +25,9 @@ $this->section('content');
             <li class="nav-item">
                 <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true"><?php echo lang('Client.account.general');?></a>
             </li>
-            <li class="nav-item">
+           <!-- <li class="nav-item">
                 <a class="nav-link" id="password-tab" data-toggle="tab" href="#password" role="tab" aria-controls="password" aria-selected="false"><?php echo lang('Client.account.changePassword');?></a>
-            </li>
+            </li>-->
         </ul>
         <div class="tab-content pt-4" id="myTabContent">
             <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
@@ -61,6 +61,7 @@ $this->section('content');
                 </div>
                 <?php echo form_close();?>
             </div>
+            <!--
             <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
                 <?php echo form_open('',[],['do'=>'password']);?>
                 <div class="form-group">
@@ -80,6 +81,7 @@ $this->section('content');
                 </div>
                 <?php echo form_close();?>
             </div>
+            -->
         </div>
 
 

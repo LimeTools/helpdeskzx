@@ -100,9 +100,9 @@ class Users extends ResourceController
             return $api->showError();
         }
         if(defined('HDZDEMO')){
-            $this->model->select('id, fullname, \'[Hidden in demo]\' as email');
+            $this->model->select('id, name, \'[Hidden in demo]\' as email');
         }else{
-            $this->model->select('id, fullname, email');
+            $this->model->select('id, name, email');
         }
         $result = $this->model->find($id);
         if(!$result){
