@@ -737,7 +737,7 @@ class Tickets
 
         foreach ($result as &$row) {
             $user = $this->usersModel->select("email, name")->where('id', $row->user_id)->get(1)->getRow();
-            $row->fullname = $user->name;
+            $row->fullname = $user->name ?? '';
         }
 
         return [
