@@ -644,7 +644,7 @@ class Tickets
                     $this->ticketsModel->groupStart()
                         ->where('tickets.id', $request->getGet('keyword'))
                         ->orLike('tickets.subject', $request->getGet('keyword'))
-                        ->orLike('u.fullname', $request->getGet('keyword'))
+                        ->orLike('u.name', $request->getGet('keyword'))
                         ->orWhere('u.email', $request->getGet('keyword'))
                         ->groupEnd();
                 }
@@ -727,7 +727,7 @@ class Tickets
         }
 
         $db = Database::connect();
-        $result = $this->ticketsModel->select('tickets.*, u.fullname, d.name as department_name,
+        $result = $this->ticketsModel->select('tickets.*, u.name as fullname, d.name as department_name,
         p.name as priority_name, p.color as priority_color,
         IF(last_replier=0, "", (SELECT username FROM '.$db->prefixTable('staff').' WHERE id=last_replier)) as staff_username')
             ->join('users as u', 'u.id=tickets.user_id')

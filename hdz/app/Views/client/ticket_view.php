@@ -128,7 +128,7 @@ $this->section('content');
                                     ?>
                                     <div class="text-center">
                                         <div class="mb-3">
-                                           
+
                                         </div>
                                         <div class="mb-3">
                                             <div><?php echo $ticket->fullname;?></div>
