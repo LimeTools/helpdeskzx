@@ -735,11 +735,10 @@ class Tickets
             ->join('priority as p','p.id=tickets.priority_id')
             ->paginate($this->settings->config('tickets_page'));
 
-        foreach ($result['result'] as &$row) {
+        foreach ($result as &$row) {
             $user = $this->usersModel->select("email, name")->where('id', $row->user_id)->get(1)->getRow();
             $row->fullname = $user->name;
         }
-
 
         return [
             'result' => $result,
