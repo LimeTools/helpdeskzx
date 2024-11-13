@@ -727,13 +727,20 @@ class Tickets
         }
 
         $db = Database::connect();
-        $result = $this->ticketsModel->select('tickets.*, u.name as fullname, d.name as department_name,
+        $result = $this->ticketsModel->select('tickets.*, d.name as department_name,
         p.name as priority_name, p.color as priority_color,
         IF(last_replier=0, "", (SELECT username FROM '.$db->prefixTable('staff').' WHERE id=last_replier)) as staff_username')
-            ->join('users as u', 'u.id=tickets.user_id')
+            //->join('users as u', 'u.id=tickets.user_id')
             ->join('departments as d', 'd.id=tickets.department_id')
             ->join('priority as p','p.id=tickets.priority_id')
             ->paginate($this->settings->config('tickets_page'));
+
+        foreach ($result['result'] as &$row) {
+            $user = $this->usersModel->select("email, name")->where('id', $row->user_id)->get(1)->getRow();
+            $row->fullname = $user->name;
+        }
+
+
         return [
             'result' => $result,
             'pager' => $this->ticketsModel->pager
