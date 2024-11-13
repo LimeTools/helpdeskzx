@@ -21,28 +21,34 @@ class UserAuth extends BaseController
             $validation = Services::validation();
             $validation->setRules(
                 [
-                    'email' => 'required|valid_email',
+                  //  'email' => 'required|valid_email',
                     'password' => 'required',
                 ]
             );
 
-            if($validation->withRequest($this->request)->run() == false){
-                $error_msg = lang('Client.error.invalidEmailPassword');
-            }elseif(!$client_data = $this->client->getRow([
-                'email' => $this->request->getPost('email'),
-            ])){
-                $error_msg = lang('Client.error.invalidEmailPassword');
-            }else{
-                if(!password_verify($this->request->getPost('password'), $client_data->password)){
-                    $error_msg = lang('Client.error.invalidEmailPassword');
-                }else{
-                    $this->client->login($client_data->id, $client_data->password);
-                    return redirect()->route('view_tickets');
-                }
-            }
+//            if($validation->withRequest($this->request)->run() == false) {
+//                $error_msg = lang('Client.error.invalidEmailPassword');
+//            } else {
 
+                $client_data = $this->client->getRow(['email' => $this->request->getPost('email')]);
+                if (!$client_data) {
+                    $client_data  = $this->client->getRow(['login_code' => $this->request->getPost('email')]);
+                }
+
+                if (!$client_data) {
+                    $error_msg = lang('Client.error.invalidEmailPassword');
+                } else {
+                    if(!password_verify($this->request->getPost('password'), $client_data->password)) {
+                        $error_msg = lang('Client.error.invalidEmailPassword');
+                    } else {
+                        $this->client->login($client_data->id, $client_data->password);
+                        return redirect()->route('view_tickets');
+                    }
+                }
+            //}
         }
-        return view('client/login',[
+
+        return view('client/login', [
             'error_msg' => isset($error_msg) ? $error_msg : null
         ]);
     }

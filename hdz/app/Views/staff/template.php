@@ -166,7 +166,6 @@
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <?php/*<img class="user-avatar rounded-circle mr-2" src="<?php echo staff_avatar(staff_data('avatar'));?>" alt="User Avatar">*/?>
                                 <span class="d-none d-md-inline-block"><?php echo staff_data('fullname');?></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-small">

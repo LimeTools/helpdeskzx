@@ -273,7 +273,7 @@ if(isset($message_result)){
                             ?>
                             <div class="text-center">
                                 <div class="mb-3">
-                                    <?php/*<img src="<?php echo user_avatar($ticket->avatar);?>" class="user-avatar rounded-circle img-fluid" style="max-width: 100px">*/?>
+
                                 </div>
                                 <div class="mb-3">
                                     <div><?php echo $ticket->fullname;?></div>
@@ -288,7 +288,7 @@ if(isset($message_result)){
                             ?>
                                 <div class="text-center">
                                     <div class="mb-3">
-                                       <?php/* <img src="<?php echo $staffData['avatar'] ?? '';?>" class="user-avatar rounded-circle img-fluid" style="max-width: 100px"> */?>
+
                                     </div>
                                     <div class="mb-3">
                                         <div><?php echo $staffData['fullname'];?></div>

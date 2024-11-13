@@ -47,7 +47,8 @@ class Client
 
     private function validateSession($client_id, $client_hash)
     {
-        if(!$user_data = $this->usersModel->find($client_id)){
+
+        if(!$user_data = $this->usersModel->find($client_id)) {
             return $this->logout();
         }
 

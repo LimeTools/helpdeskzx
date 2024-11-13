@@ -27,7 +27,7 @@ $this->section('content');
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
                     </div>
-                    <input type="email" name="email" placeholder="<?php echo lang('Client.form.email');?>" class="form-control" value="<?php echo set_value('email');?>">
+                    <input type="text" name="email" placeholder="<?php echo lang('Client.form.email');?>" class="form-control" value="<?php echo set_value('email');?>">
                 </div>
             </div>
             <div class="form-group">

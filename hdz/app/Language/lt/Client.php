@@ -50,7 +50,7 @@ return [
         'passwordUpdated' => 'Slaptažodis buvo pakeistas.'
     ],
     'form' => [
-        'email' => 'El.paštas',
+        'email' => 'El.paštas arba kodas',
         'password' => 'Slaptažodis',
         'submit' => 'Pateikti',
         'captchaVerification' => 'CAPTCHA verification',
@@ -91,24 +91,24 @@ return [
         'fileBig' => 'Per didelis failas. Max dydis %size%',
         'search' => 'We weren\'t able to find anything relevant to your search.',
         'fileNotFound' => 'Failas nerastas.',
-        'fileNotFoundMsg' => 'The file you are trying to download is not longer available.',
-        'enterFullName' => 'Enter your full name.',
-        'enterValidEmail' => 'Enter a valid e-mail address.',
-        'emailUsed' => 'Email address is already associated with another account.',
-        'enterSubject' => 'Enter the subject.',
-        'enterYourMessage' => 'Enter your message',
-        'selectValidDepartment' => 'Select a valid department.',
+        'fileNotFoundMsg' => 'Failas, kurį bandote parsisiųsti, nebeegzistuoja.',
+        'enterFullName' => 'Įveskite savo pilną vardą pavardę.',
+        'enterValidEmail' => 'Įveskite galiojantį el.pašto adresą.',
+        'emailUsed' => 'El.pašto adresas jau yra prijungtas prie kito vartotojo.',
+        'enterSubject' => 'Įveskite pavadinimą.',
+        'enterYourMessage' => 'Įveskite pranešimą',
+        'selectValidDepartment' => 'Pasirinkite tinkamą rubriką.',
         'invalidCaptcha' => 'ERROR: Invalid captcha verification.',
-        'emailNotFound' => 'Email was not found.',
-        'invalidEmailPassword' => 'Invalid email address or password.',
-        'recordsNotFound' => 'Records not found.',
-        'enterExistingPassword' => 'Enter your existing password.',
-        'enterNewPassword' => 'Enter your new password.',
-        'passwordsNotMatches' => 'The new passwords entered do not match.',
-        'wrongExistingPassword' => 'Your existing password is incorrect.'
+        'emailNotFound' => 'El.paštas nerastas.',
+        'invalidEmailPassword' => 'Neteisingas el.paštas, kodas arba slaptažodis.',
+        'recordsNotFound' => 'Įrašų nerasta.',
+        'enterExistingPassword' => 'Įveskite savo egzistuojantį slaptažodį.',
+        'enterNewPassword' => 'Įveskite naują slaptažodį.',
+        'passwordsNotMatches' => 'Įvesti slaptažodžiai nesutampa.',
+        'wrongExistingPassword' => 'Egzistuojantis slaptažodis neteisingas.'
     ],
     '404' => [
         'title' => 'Nerasta - 404',
-        'body' => 'Oops, the page might have been removed or is temporarily unavailable.',
+        'body' => 'Puslapis yra panaikintas arba laikinai nepasiekiamas.',
     ]
 ];
