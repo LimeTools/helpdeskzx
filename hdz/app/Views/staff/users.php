@@ -62,7 +62,7 @@ echo form_open('',['id'=>'manageForm'],['do'=>'remove']).
                             <td>
                                 <?php echo (defined('HDZDEMO') ? '[Hidden in demo]' : $user->email);?>
                             </td>
-                            <td><?php echo time_ago($user->created_at);?></td>
+                            <td><?php echo ($user->created_at);?></td>
 <!--                            <td>-->
 <!--                                --><?php //echo $user->last_login_at == 0 ? lang('Admin.form.never') : ($user->last_login_at);?>
 <!--                            </td>-->
