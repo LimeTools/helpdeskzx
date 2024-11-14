@@ -46,7 +46,7 @@ echo form_open('',['id'=>'manageForm'],['do'=>'remove']).
                     <th><?php echo lang('Admin.form.fullName');?></th>
                     <th><?php echo lang('Admin.form.email');?></th>
                     <th><?php echo lang('Admin.agents.registration');?></th>
-                    <th><?php echo lang('Admin.agents.lastLogin');?></th>
+                    <!--<th><?php echo lang('Admin.agents.lastLogin');?></th>-->
                    <!-- <th><?php echo lang('Admin.form.status');?></th>-->
                     <th></th>
                 </tr>
@@ -63,9 +63,9 @@ echo form_open('',['id'=>'manageForm'],['do'=>'remove']).
                                 <?php echo (defined('HDZDEMO') ? '[Hidden in demo]' : $user->email);?>
                             </td>
                             <td><?php echo time_ago($user->created_at);?></td>
-                            <td>
-                                <?php echo $user->last_login_at == 0 ? lang('Admin.form.never') : time_ago($user->last_login_at);?>
-                            </td>
+<!--                            <td>-->
+<!--                                --><?php //echo $user->last_login_at == 0 ? lang('Admin.form.never') : time_ago($user->last_login_at);?>
+<!--                            </td>-->
                            <!-- <td>
                                 <?php echo ($user->status == 1 ? '<span class="text-success">'.lang('Admin.form.active').'</span>' : lang('Admin.form.locked'));?>
                             </td>
