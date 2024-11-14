@@ -135,9 +135,10 @@ class Client
         $name = ($name == '' ? $email : $name);
         $this->usersModel->protect(false);
         $this->usersModel->insert([
-            'fullname' => esc($name),
+            'name' => esc($name),
+            'login_code' => esc(substr($name, 0, 6)),
             'email' => esc($email),
-            'registration' => time(),
+            'created_at' => date('Y-m-d H:i:s'),
             'password' => password_hash($password, PASSWORD_BCRYPT)
         ]);
         $this->usersModel->protect(true);
