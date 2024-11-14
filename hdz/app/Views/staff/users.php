@@ -64,7 +64,7 @@ echo form_open('',['id'=>'manageForm'],['do'=>'remove']).
                             </td>
                             <td><?php echo time_ago($user->created_at);?></td>
 <!--                            <td>-->
-<!--                                --><?php //echo $user->last_login_at == 0 ? lang('Admin.form.never') : time_ago($user->last_login_at);?>
+<!--                                --><?php //echo $user->last_login_at == 0 ? lang('Admin.form.never') : ($user->last_login_at);?>
 <!--                            </td>-->
                            <!-- <td>
                                 <?php echo ($user->status == 1 ? '<span class="text-success">'.lang('Admin.form.active').'</span>' : lang('Admin.form.locked'));?>
