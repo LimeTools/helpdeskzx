@@ -47,7 +47,7 @@ echo form_open('',['id'=>'manageForm'],['do'=>'remove']).
                     <th><?php echo lang('Admin.form.email');?></th>
                     <th><?php echo lang('Admin.agents.registration');?></th>
                     <th><?php echo lang('Admin.agents.lastLogin');?></th>
-                    <th><?php echo lang('Admin.form.status');?></th>
+                   <!-- <th><?php echo lang('Admin.form.status');?></th>-->
                     <th></th>
                 </tr>
                 </thead>
@@ -62,17 +62,18 @@ echo form_open('',['id'=>'manageForm'],['do'=>'remove']).
                             <td>
                                 <?php echo (defined('HDZDEMO') ? '[Hidden in demo]' : $user->email);?>
                             </td>
-                            <td><?php echo time_ago($user->registration);?></td>
+                            <td><?php echo time_ago($user->created_at);?></td>
                             <td>
-                                <?php echo $user->last_login == 0 ? lang('Admin.form.never') : time_ago($user->last_login);?>
+                                <?php echo $user->last_login_at == 0 ? lang('Admin.form.never') : time_ago($user->last_login_at);?>
                             </td>
-                            <td>
+                           <!-- <td>
                                 <?php echo ($user->status == 1 ? '<span class="text-success">'.lang('Admin.form.active').'</span>' : lang('Admin.form.locked'));?>
                             </td>
+                            -->
                             <td>
                                 <div class="btn-group">
-                                    <a href="<?php echo site_url(route_to('staff_users_edit', $user->id));?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                    <button type="button" onclick="removeUser(<?php echo $user->id;?>)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                  <!--  <a href="<?php echo site_url(route_to('staff_users_edit', $user->id));?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                    <button type="button" onclick="removeUser(<?php echo $user->id;?>)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>-->
                                 </div>
                             </td>
                         </tr>
