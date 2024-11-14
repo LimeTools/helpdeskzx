@@ -11,6 +11,7 @@ namespace App\Libraries;
 
 use App\Models\EmailTemplate;
 use Config\Services;
+use Resend;
 
 class Emails
 {
@@ -177,34 +178,50 @@ class Emails
         $subject = str_replace(array_keys($data), array_values($data), $template->subject);
         $message = str_replace(array_keys($data), array_values($data), $template->message);
 
+        $resend = Resend::client($email->smtp_password);
 
-        $emailClass = Services::email();
-        if($email->outgoing_type == 'smtp'){
-            $config['protocol'] = 'smtp';
-            $config['SMTPHost'] = $email->smtp_host;
-            $config['SMTPUser'] = $email->smtp_username;
-            $config['SMTPPass'] = $email->smtp_password;
-            $config['SMTPPort'] = $email->smtp_port;
-            $config['SMTPCrypto'] = $email->smtp_encryption;
-        }
-        $config['userAgent'] = 'HelpDeskZ';
-        $config['newline'] = "\r\n";
-        $config['mailType'] = 'html';
-        $emailClass->initialize($config);
-        $emailClass->setFrom($email->email, $email->name);
-        $emailClass->setTo($user_email);
-        $emailClass->setSubject($subject);
-        $emailClass->setMessage($message);
-        if(is_array($attachments) && count($attachments) > 0){
-            foreach ($attachments as $file){
-                $file_content = file_get_contents($file['path']);
-                $emailClass->attach($file_content, 'attachment', $file['name'], $file['file_type']);
-            }
-        }
-        if(!$emailClass->send())
+        $emailSent = $resend->emails->send([
+            'from' => $email->name.' <'.$email->email.'>',
+            'to' => [$user_email],
+            'subject' => $subject,
+            'html' => $message,
+        ]);
+
+        if(!$emailSent)
         {
-            log_message('error', 'Error sending email to '.$user_email);
+            log_message('error', 'Error sending resend email to '.$user_email);
         }
+
+
+
+//        $emailClass = Services::email();
+//        if($email->outgoing_type == 'smtp'){
+//            $config['protocol'] = 'smtp';
+//            $config['SMTPHost'] = $email->smtp_host;
+//            $config['SMTPUser'] = $email->smtp_username;
+//            $config['SMTPPass'] = $email->smtp_password;
+//            $config['SMTPPort'] = $email->smtp_port;
+//            $config['SMTPCrypto'] = $email->smtp_encryption;
+//        }
+//        $config['userAgent'] = 'HelpDeskZ';
+//        $config['newline'] = "\r\n";
+//        $config['mailType'] = 'html';
+//        $emailClass->initialize($config);
+//        $emailClass->setFrom($email->email, $email->name);
+//        $emailClass->setTo($user_email);
+//        $emailClass->setSubject($subject);
+//        $emailClass->setMessage($message);
+//
+//        if(is_array($attachments) && count($attachments) > 0){
+//            foreach ($attachments as $file){
+//                $file_content = file_get_contents($file['path']);
+//                $emailClass->attach($file_content, 'attachment', $file['name'], $file['file_type']);
+//            }
+//        }
+//        if(!$emailClass->send())
+//        {
+//            log_message('error', 'Error sending email to '.$user_email);
+//        }
         return true;
     }
 
