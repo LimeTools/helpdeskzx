@@ -30,7 +30,7 @@ if(isset($success_msg)){
             ?>
             <div class="form-group">
                 <label><?php echo lang('Admin.form.fullName');?></label>
-                <input type="text" name="fullname" class="form-control" value="<?php echo set_value('fullname', (isset($user) ? $user->fullname : ''));?>">
+                <input type="text" name="fullname" class="form-control" value="<?php echo set_value('fullname', (isset($user) ? $user->name : ''));?>">
             </div>
             <div class="form-group">
                 <label><?php echo lang('Admin.form.email');?></label>

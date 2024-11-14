@@ -57,7 +57,7 @@ echo form_open('',['id'=>'manageForm'],['do'=>'remove']).
                         ?>
                         <tr>
                             <td>
-                                <?php echo $user->fullname;?><br>
+                                <?php echo $user->name;?><br>
                             </td>
                             <td>
                                 <?php echo (defined('HDZDEMO') ? '[Hidden in demo]' : $user->email);?>
